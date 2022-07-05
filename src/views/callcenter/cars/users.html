@@ -1,0 +1,73 @@
+<%- include ('../partials/head.html') %>
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-12 d-flex align-items-center justify-content-between">
+                <h1>Listado de automoviles</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="content">
+    <div class="card p-2 mb-5">
+        <div class="card-header mb-3 p-2 text-lg">Automoviles</div>
+        <table id="dataTable" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="d-none">ID</th>
+                    <th>RUT</th>
+                    <th>Nombre</th>
+                    <th>n° Automoviles</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% users.forEach((user) => { %>
+                <tr>
+                    <td class="d-none"><%= user.id %></td>
+                    <td><%= user.rut %></td>
+                    <td><%= user.name %></td>
+                    <td><%= user.cars_count %></td>
+                    <td>
+                        <div class="d-flex">
+                            <a href="/callcenter/cars/<%= user.id %>" class="btn btn-success btn-sm mx-1"><i
+                                    class="fas fa-car"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+
+<script src="/public/js/admin/jquery.dataTables.min.js"></script>
+<script src="/public/js/admin/dataTables.bootstrap4.min.js"></script>
+<script src="/public/js/admin/dataTables.responsive.min.js"></script>
+<script src="/public/js/admin/responsive.bootstrap4.min.js"></script>
+
+
+<script>
+    $('#dataTable').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "autoWidth": false,
+        "responsive": true,
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
+        },
+        "order": [
+            [1, "desc"]
+        ]
+    });
+</script>
+
+
+<%- include ('../partials/footer.html') %>

@@ -1,0 +1,52 @@
+<%- include ('../partials/head.html') %>
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-12">
+                <h1>Agregar usuario</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="card card-primary p-0 col-md-6">
+        <div class="card-header">
+            <h3 class="card-title">Informacion</h3>
+        </div>
+        <form action="/callcenter/users" method="POST">
+            <div class="card-body row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="name">RUT</label>
+                        <input type="text" class="form-control" name="rut" id="rut"
+                            value="<% if(global_data.rut) { %><%= global_data.rut %><% } %>" required
+                            autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Nombre</label>
+                        <input type="text" class="form-control" name="name" id="name"
+                            value="<% if(global_data.name) { %><%= global_data.name %><% } %>" required
+                            autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Email</label>
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" id="email" name="email" required
+                                value="<% if(global_data.email) { %><%= global_data.email %><% } %>"
+                                autocapitalize="off" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Agregar</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+<%- include ('../partials/footer.html') %>

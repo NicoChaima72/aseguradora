@@ -1,0 +1,99 @@
+<%- include ('../partials/head.html') %>
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-12">
+                <h1>Informacion siniestro</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="card card-<%= detail.state_color %> p-0">
+        <div class="card-header">
+            <h3 class="card-title">SINIESTRO ID: <%= detail.sinister_id %></h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="patent">PATENTE</label>
+                        <input type="text" class="form-control" value="<%= detail.car_patent %>" disabled>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="patent">Descripcion</label>
+                        <textarea rows="2" class="form-control" disabled><%= detail.sinister_description %></textarea>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="patent">Fecha suceso</label>
+                                <input type="text" class="form-control" value="<%= detail.sinister_date %>" disabled>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="patent">Creacion siniestro</label>
+                                <input type="text" class="form-control" value="<%= detail.sinister_created_at %>"
+                                    disabled>
+                            </div>
+                        </div>
+                        <% if(detail.state_id !== 3 && detail.state_id !== 4) { %>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="patent">Respuesta siniestro</label>
+                                <input type="text" class="form-control" value="<%= detail.sinister_updated_at %>"
+                                    disabled>
+                            </div>
+                        </div>
+                        <% } %>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="patent" class="d-block">Estado</label>
+                        <span class="badge badge-<%= detail.state_color %>"><%= detail.state_description %></span>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <% if(detail.state_id === 6 || detail.state_id === 2) { %>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="patent" class="d-block">Observacion</label>
+                        <textarea rows="5" class="form-control" disabled><%= detail.sinister_observation %></textarea>
+                    </div>
+                </div>
+            </div>
+            <% } else { %>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="patent" class="d-block">Ultima actualizacion</label>
+                        <input type="text" class="form-control" value="<%= detail.sinister_updated_at %>" disabled>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="patent" class="d-block">Ultimas observaciones</label>
+                        <textarea rows="5" class="form-control" disabled><%= detail.detail_observations %></textarea>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+
+
+        </div>
+
+    </div>
+</section>
+
+
+<%- include ('../partials/footer.html') %>

@@ -1,0 +1,92 @@
+<%- include ('../partials/head.html') %>
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-12 d-flex align-items-center justify-content-between">
+                <h1>En proceso</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="content">
+    <div class="card p-2 mb-5">
+        <div class="card-header mb-3 p-2 text-lg">Listado de automoviles en proceso</div>
+        <table id="dataTable" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="d-none">ID</th>
+                    <th>Estado</th>
+                    <th>RUT CLIENTE</th>
+                    <th>PATENTE</th>
+                    <th>Descripcion</th>
+                    <th>Fecha</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% sinisters.forEach((sinister) => { %>
+                <tr>
+                    <td class="d-none"><%= sinister.id %></td>
+                    <td><span class="badge badge-warning">En proceso</span></td>
+                    <td><%= sinister.rut %></td>
+                    <td><%= sinister.patent %></td>
+                    <td><%= sinister.description %></td>
+                    <td><%= sinister.created_at %></td>
+                    <td>
+                        <div class="d-flex">
+                            <a href="/mechanic/sinisters/in-process/<%= sinister.id %>/edit"
+                                class="btn btn-warning mr-1"><i class="fas fa-pen"></i></a>
+                            <form action="/mechanic/sinisters/<%= sinister.id %>/deleted?_method=PUT" method="POST">
+                                <input type="hidden" name="_method" value="PUT">
+                                <input type="submit" name="option" id="btnRefuse-<%= sinister.id %>"
+                                    class="btn btn-outline-danger" value="Eliminar">
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                <script>
+                    document.getElementById('btnRefuse-<%= sinister.id %>').addEventListener('click', (e) => {
+                        if (confirm('Remover siniestro?')) {
+                            if (!confirm('¿Estas seguro?'))
+                                e.preventDefault()
+                        } else {
+                            e.preventDefault()
+                        }
+                    });
+                </script>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+
+<script src="/public/js/admin/jquery.dataTables.min.js"></script>
+<script src="/public/js/admin/dataTables.bootstrap4.min.js"></script>
+<script src="/public/js/admin/dataTables.responsive.min.js"></script>
+<script src="/public/js/admin/responsive.bootstrap4.min.js"></script>
+
+
+<script>
+    $('#dataTable').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "autoWidth": false,
+        "responsive": true,
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
+        },
+        "order": [
+            [0, "desc"]
+        ]
+    });
+</script>
+
+
+<%- include ('../partials/footer.html') %>

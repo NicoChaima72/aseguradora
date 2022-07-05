@@ -1,0 +1,24 @@
+<div class="container pt-2">
+    <% if (global_success.length > 0) { %>
+    <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <%= global_success %>
+    </div>
+    <% }  %>
+
+    <% if (global_error.length > 0) { %>
+    <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <%= global_error %>
+    </div>
+    <% }  %>
+
+    <% if (global_errors.length > 0) {%>
+    <div class="alert alert-warning alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <% global_errors.forEach((error) => { %>
+        <p class="m-0"><%= error.text %></p>
+        <% }) %>
+    </div>
+    <% } %>
+</div>

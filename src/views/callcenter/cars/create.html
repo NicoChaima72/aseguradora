@@ -1,0 +1,50 @@
+<%- include ('../partials/head.html') %>
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-12">
+                <h1>Agregar automovil</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="card card-primary col-md-6 p-0">
+        <div class="card-header">
+            <h3 class="card-title"><%= user.rut %> - <%= user.name %></h3>
+        </div>
+        <form action="/callcenter/cars/<%= user.id %>" method="POST">
+            <div class="card-body row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="patent">PATENTE</label>
+                        <input type="text" class="form-control" name="patent" id="patent"
+                            value="<% if(global_data.patent) { %><%= global_data.patent %><% } %>" required
+                            autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Descripcion</label>
+                        <textarea name="description" id="description" rows="3" class="form-control"
+                            required><% if(global_data.description) { %><%= global_data.description %><% } %></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="year">Año</label>
+                        <input type="number" class="form-control" id="year" name="year" required
+                            value="<% if(global_data.year) { %><%= global_data.year %><% } %>" autocomplete="off">
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Agregar</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+<%- include ('../partials/footer.html') %>

@@ -1,0 +1,98 @@
+<%- include ('../partials/head.html') %>
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-12">
+                <h1>Siniestro pendiente</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="card card-warning p-0">
+        <div class="card-header">
+            <h3 class="card-title"><%= sinister.user_rut %> - <%= sinister.user_name %></h3>
+        </div>
+        <form action="/mechanic/sinisters/<%= sinister.sinister_id %>/in-process?_method=PUT" method="POST">
+            <input type="hidden" name="_method" value="PUT">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label for="patent">PATENTE</label>
+                            <input type="text" class="form-control" value="<%= sinister.car_patent %>" disabled>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label for="patent">Descripcion</label>
+                            <textarea rows="2" class="form-control" disabled><%= sinister.car_description %></textarea>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label for="patent">Fecha inicio seguro</label>
+                            <input type="text" class="form-control" value="<%= sinister.car_created_at %>" disabled>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label for="patent">Descripcion</label>
+                            <textarea rows="2" class="form-control"
+                                disabled><%= sinister.sinister_description %></textarea>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label for="patent">Dia suceso</label>
+                            <input type="text" class="form-control" value="<%= sinister.sinister_date %>" disabled>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label for="patent">Fecha registrada</label>
+                            <input type="text" class="form-control" value="<%= sinister.sinister_created_at %>"
+                                disabled>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="observations">Observaciones</label>
+                            <textarea name="observations" id="observations" rows="10" class="form-control"
+                                required><% if(global_data.observations) { %><%= global_data.observations %><% } else { %><%= detail.observations %><% } %></textarea>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="card-footer">
+                <input type="submit" class="btn btn-primary" name="option" value="Guardar">
+                <input type="submit" id="btnFinalized" class="btn btn-outline-success" name="option"
+                    value="Marcar como finalizado">
+            </div>
+        </form>
+        <script>
+            document.getElementById('btnFinalized').addEventListener('click', (e) => {
+                if (confirm('¿Finalizar siniestro?')) {
+                    if (!confirm('¿Estás seguro?'))
+                        e.preventDefault()
+                } else {
+                    e.preventDefault()
+                }
+            });
+        </script>
+    </div>
+</section>
+
+
+<%- include ('../partials/footer.html') %>

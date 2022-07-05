@@ -1,0 +1,50 @@
+<%- include ('../partials/head.html') %>
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-12">
+                <h1>Editar automovil</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="card card-primary col-md-6 p-0">
+        <div class="card-header">
+            <h3 class="card-title"><%= user.rut %> - <%= user.name %></h3>
+        </div>
+        <form action="/callcenter/cars/<%= user.id %>/<%= car.id %>?_method=PUT" method="POST">
+            <input type="hidden" name="_method" value="PUT">
+            <div class="card-body row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="patent">PATENTE</label>
+                        <input type="text" class="form-control" value="<%= car.patent %>" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Descripcion</label>
+                        <textarea name="description" id="description" rows="3" class="form-control"
+                            required><% if(global_data.description) { %><%= global_data.description %><% } else { %><%= car.description %><% } %></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="year">Año</label>
+                        <input type="number" class="form-control" id="year" name="year" required
+                            value="<% if(global_data.year) { %><%= global_data.year %><% } else { %><%= car.year %><% } %>"
+                            autocomplete="off">
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Actualizar</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+<%- include ('../partials/footer.html') %>
