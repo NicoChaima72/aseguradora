@@ -25,7 +25,7 @@ module.exports = (app) => {
     session({
       cookie: { maxAge: 86400000 },
       store: mysqlSession(database),
-      secret: "session_secret",
+      secret: process.env.SESSION_SECRET,
       resave: false,
       saveUninitialized: true,
     })
